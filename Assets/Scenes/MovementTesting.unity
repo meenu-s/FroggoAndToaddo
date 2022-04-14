@@ -229,7 +229,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 135079485}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.073, y: 0.351, z: 0}
+  m_LocalPosition: {x: -0.22, y: 3.89, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1662913623}
@@ -630,7 +630,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 987765927}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.08, y: -0.483, z: 0}
+  m_LocalPosition: {x: -0.08, y: -4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1662913623}
@@ -733,7 +733,8 @@ GameObject:
   - component: {fileID: 1530059492}
   - component: {fileID: 1530059491}
   - component: {fileID: 1530059490}
-  m_Layer: 8
+  - component: {fileID: 1530059496}
+  m_Layer: 9
   m_Name: Froggo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -767,9 +768,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.63}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 2.42
 --- !u!50 &1530059492
 Rigidbody2D:
   serializedVersion: 4
@@ -809,7 +810,7 @@ MonoBehaviour:
   m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 247
+    m_Bits: 503
   m_GroundCheck: {fileID: 2066937699}
   m_CeilingCheck: {fileID: 2025979603}
   m_CrouchDisableCollider: {fileID: 0}
@@ -859,8 +860,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 0.28235295, g: 0.9529412, b: 0.7350775, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 18810f0f271a5f34fbd0727e023ad70f, type: 3}
+  m_Color: {r: 0.49093705, g: 1, b: 0.35283017, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -878,14 +879,40 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1530059489}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.68, y: -0.471, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.52, y: -0.84, z: 0}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_Children:
   - {fileID: 2025979603}
   - {fileID: 2066937699}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1530059496
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1530059489}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 1.4}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 10.33, y: 9.13}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4.86, y: 3.96}
+  m_EdgeRadius: 0
 --- !u!1 &1662913621
 GameObject:
   m_ObjectHideFlags: 0
@@ -900,6 +927,7 @@ GameObject:
   - component: {fileID: 1662913625}
   - component: {fileID: 1662913624}
   - component: {fileID: 1662913627}
+  - component: {fileID: 1662913628}
   m_Layer: 8
   m_Name: Toaddo
   m_TagString: Untagged
@@ -947,8 +975,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 0.9528302, g: 0.7869452, b: 0.28225344, a: 1}
+  m_Sprite: {fileID: 21300000, guid: b42874d581306db49b8c4c0e7b65de8a, type: 3}
+  m_Color: {r: 1, g: 0.9101009, b: 0.645283, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -966,8 +994,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1662913621}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5418515, y: -0.471, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -2.02, y: -0.73, z: 0}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_Children:
   - {fileID: 135079486}
   - {fileID: 987765928}
@@ -987,9 +1015,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.2659309, y: -0.90416867}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 3.5316207
 --- !u!50 &1662913625
 Rigidbody2D:
   serializedVersion: 4
@@ -1029,7 +1057,7 @@ MonoBehaviour:
   m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 247
+    m_Bits: 759
   m_GroundCheck: {fileID: 987765928}
   m_CeilingCheck: {fileID: 135079486}
   m_CrouchDisableCollider: {fileID: 0}
@@ -1053,6 +1081,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1662913626}
   runSpeed: 1
+--- !u!61 &1662913628
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662913621}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.29252458, y: 1.223285}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 11.76, y: 11.04}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 7.15, y: 4.63}
+  m_EdgeRadius: 0
 --- !u!1 &1963595736
 GameObject:
   m_ObjectHideFlags: 0
@@ -1106,7 +1160,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2025979603}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: CeilingCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1121,7 +1175,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2025979602}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.073, y: 0.351, z: 0}
+  m_LocalPosition: {x: -0.073, y: 3.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1530059495}
@@ -1136,7 +1190,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2066937699}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1151,7 +1205,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2066937698}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.08, y: -0.483, z: 0}
+  m_LocalPosition: {x: -0.08, y: -2.92, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1530059495}
