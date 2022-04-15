@@ -28,6 +28,7 @@ public class ToadMovement : MonoBehaviour
             // Toggle through 3 toad sizes
             Vector3 currentSize = transform.localScale;
             Vector3 newSize;
+            int signOfX = currentSize.x < 0 ? -1 : 1;
 
             // Set sizes here: 0.08, 0.15, 0.25
             float smallScale = 0.08f;
@@ -36,22 +37,22 @@ public class ToadMovement : MonoBehaviour
             float error = 0.01f;
 
             // What size is toad currently in 
-            if (Mathf.Abs(currentSize.x-smallScale) < error) {
+            if (Mathf.Abs(currentSize.x)-smallScale < error) {
                 // currently in small size, resize to medium size
-                newSize = new Vector3( mediumScale, mediumScale, 1f );
+                newSize = new Vector3( signOfX * mediumScale, mediumScale, 1f );
                 Debug.Log("Toad is now medium");
-            } else if (Mathf.Abs(currentSize.x-mediumScale) < error) {
+            } else if (Mathf.Abs(currentSize.x)-mediumScale < error) {
                 // currently in medium size, resize to large size
-                newSize = new Vector3( largeScale, largeScale, 1f );
+                newSize = new Vector3( signOfX * largeScale, largeScale, 1f );
                 Debug.Log("Toad is now large");
-            } else if (Mathf.Abs(currentSize.x-largeScale) < error) {
+            } else if (Mathf.Abs(currentSize.x)-largeScale < error) {
                 // currently in large size, resize to small size
-                newSize = new Vector3( smallScale, smallScale, 1f );
+                newSize = new Vector3( signOfX * smallScale, smallScale, 1f );
                 Debug.Log("Toad is now small");
             } else {
                 // this size is not valid, resize to medium size
-                Debug.Log("help: the toad should not be this size");
-                newSize = new Vector3( mediumScale, mediumScale, 1f );
+                Debug.Log("help: the toad should not be this size of "+ currentSize.x);
+                newSize = new Vector3( signOfX * mediumScale, mediumScale, 1f );
                 Debug.Log("defaulting toad to medium size");
             }
             // set new size

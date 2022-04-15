@@ -731,9 +731,10 @@ GameObject:
   - component: {fileID: 1530059494}
   - component: {fileID: 1530059493}
   - component: {fileID: 1530059492}
-  - component: {fileID: 1530059491}
   - component: {fileID: 1530059490}
+  - component: {fileID: 1530059491}
   - component: {fileID: 1530059496}
+  - component: {fileID: 1530059497}
   m_Layer: 9
   m_Name: Froggo
   m_TagString: Untagged
@@ -894,7 +895,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1530059489}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -913,6 +914,31 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.86, y: 3.96}
   m_EdgeRadius: 0
+--- !u!68 &1530059497
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1530059489}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -2.422591, y: -0.5808445}
+  - {x: -1.7574492, y: 3.8599823}
+  - {x: 0.21730024, y: 3.1026106}
+  - {x: 2.0844274, y: 3.881422}
+  - {x: 2.42259, y: -0.6361631}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &1662913621
 GameObject:
   m_ObjectHideFlags: 0
@@ -925,9 +951,11 @@ GameObject:
   - component: {fileID: 1662913622}
   - component: {fileID: 1662913626}
   - component: {fileID: 1662913625}
+  - component: {fileID: 1662913628}
   - component: {fileID: 1662913624}
   - component: {fileID: 1662913627}
-  - component: {fileID: 1662913628}
+  - component: {fileID: 1662913629}
+  - component: {fileID: 1662913630}
   m_Layer: 8
   m_Name: Toaddo
   m_TagString: Untagged
@@ -1088,7 +1116,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1662913621}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -1107,6 +1135,59 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 7.15, y: 4.63}
   m_EdgeRadius: 0
+--- !u!68 &1662913629
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662913621}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -3.8661644, y: -1.1310585}
+  - {x: -3.8160686, y: 3.560801}
+  - {x: -2.8948066, y: 3.5431318}
+  - {x: -2.8595653, y: 2.6715002}
+  - {x: 2.388613, y: 2.7891526}
+  - {x: 2.3892665, y: 3.533132}
+  - {x: 3.1979775, y: 3.5524569}
+  - {x: 3.2868414, y: -0.93795055}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
+--- !u!68 &1662913630
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662913621}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -3.7778955, y: -1.106371}
+  - {x: -2.7531831, y: 4.1365747}
+  - {x: 0.07900396, y: 2.8260179}
+  - {x: 2.6376128, y: 4.379289}
+  - {x: 3.3076873, y: -1.023393}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &1963595736
 GameObject:
   m_ObjectHideFlags: 0
