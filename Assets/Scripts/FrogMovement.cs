@@ -13,6 +13,8 @@ public class FrogMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // HorizontalToad and JumpToad keys are configured in UnityEditor > Edit > Project Settings > InputManager
+        // get horizontal speed and whether currently jumping or not
         horizontalMove = runSpeed * Input.GetAxisRaw("HorizontalFrog");
         if (Input.GetButtonDown("JumpFrog"))
         {
