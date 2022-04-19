@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class ToadMovement : MonoBehaviour
 {
-
+    Animator m_Animator;
     public CharacterController2D t_controller;
     public float t_runSpeed = 1f;
 
     float t_horizontalMove = 0f;
     bool t_jump = false;
     public bool t_moving = false;
+
+    void Start()
+    {
+        //This gets the Animator, which should be attached to the GameObject you are intending to animate.
+        m_Animator = gameObject.GetComponent<Animator>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -27,6 +33,15 @@ public class ToadMovement : MonoBehaviour
         {
             t_moving = false;
         }
+
+        //float moveInput = Input.GetAxisRaw("Horizontal");
+        // if (Input.GetKeyDown(KeyCode.A)){
+        //     Debug.Log("toad is moving");
+        //     m_Animator.SetBool("moving", false);
+        // } else {
+        //     Debug.Log("toad is not moving");
+        //     m_Animator.SetBool("moving", true);
+        // }
 
         if (Input.GetButtonDown("JumpToad"))
         {
