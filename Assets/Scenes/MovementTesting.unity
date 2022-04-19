@@ -1274,8 +1274,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 925c06897f37c4246bed4c02013fa487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 1530059493}
-  runSpeed: 1
+  f_controller: {fileID: 1530059493}
+  f_runSpeed: 1
+  f_moving: 0
 --- !u!58 &1530059491
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1639,8 +1640,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22cef30f3242d874ab7fb88b7c496072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 1662913626}
-  runSpeed: 1
+  t_controller: {fileID: 1662913626}
+  t_runSpeed: 1
+  t_moving: 0
 --- !u!61 &1662913628
 BoxCollider2D:
   m_ObjectHideFlags: 0
