@@ -6,9 +6,9 @@ public class FrogMovement : MonoBehaviour
 {
     public CharacterController2D controller;
     public float runSpeed = 1f;
-
     float horizontalMove = 0f;
     bool jump = false;
+    bool swimDown = false;
 
     // Update is called once per frame
     void Update()
@@ -19,13 +19,17 @@ public class FrogMovement : MonoBehaviour
         if (Input.GetButtonDown("JumpFrog"))
         {
             jump = true;
+        } if (Input.GetButtonDown("SwimDownFrog")) {
+            swimDown = true;
+            Debug.Log("down button pushes");
         }
     }
 
     void FixedUpdate() 
     {
         // Move our character
-        controller.Move(horizontalMove, false, jump);
+        controller.Move(horizontalMove, false, jump, swimDown);
         jump = false;
+        swimDown = false;
     }
 }

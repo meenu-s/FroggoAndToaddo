@@ -62,6 +62,9 @@ public class ToadMovement : MonoBehaviour
 
     void FixedUpdate() 
     {
+        if (controller.isInWater()) {
+            Debug.Log("TOAD DIED");
+        }
         // Move our character
         controller.Move(horizontalMove, false, jump);
         jump = false;
