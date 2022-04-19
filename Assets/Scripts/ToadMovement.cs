@@ -5,21 +5,32 @@ using UnityEngine;
 public class ToadMovement : MonoBehaviour
 {
 
-    public CharacterController2D controller;
-    public float runSpeed = 1f;
+    public CharacterController2D t_controller;
+    public float t_runSpeed = 1f;
 
-    float horizontalMove = 0f;
-    bool jump = false;
+    float t_horizontalMove = 0f;
+    bool t_jump = false;
+    public bool t_moving = false;
 
     // Update is called once per frame
     void Update()
     {
         // HorizontalToad and JumpToad keys are configured in UnityEditor > Edit > Project Settings > InputManager
         // get horizontal speed and whether currently jumping or not
-        horizontalMove = runSpeed * Input.GetAxisRaw("HorizontalToad");
+        t_horizontalMove = t_runSpeed * Input.GetAxisRaw("HorizontalToad");
+
+        // set t_moving to true or false depending on if the toad is currently moving or not
+        if (Mathf.Abs(t_horizontalMove)>0.01f)
+        {
+            t_moving = true;
+        } else 
+        {
+            t_moving = false;
+        }
+
         if (Input.GetButtonDown("JumpToad"))
         {
-            jump = true;
+            t_jump = true;
         }
         
         // Change size of the toad TODO: put this in another file
@@ -62,8 +73,11 @@ public class ToadMovement : MonoBehaviour
 
     void FixedUpdate() 
     {
+        if (t_controller.isInWater()) {
+            Debug.Log("TOAD DIED");
+        }
         // Move our character
-        controller.Move(horizontalMove, false, jump);
-        jump = false;
+        t_controller.Move(t_horizontalMove, false, t_jump);
+        t_jump = false;
     }
 }
