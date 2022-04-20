@@ -14,6 +14,10 @@ public class SwtichScreen : MonoBehaviour
     }
 
     public void LevelScene() {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("FirstLevel");
+    }
+
+    public void testScene() {
+        SceneManager.LoadScene("MovementTesting");
     }
 }
