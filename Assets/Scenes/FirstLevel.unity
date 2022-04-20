@@ -135,7 +135,8 @@ GameObject:
   - component: {fileID: 68399498}
   - component: {fileID: 68399497}
   - component: {fileID: 68399499}
-  m_Layer: 0
+  - component: {fileID: 68399500}
+  m_Layer: 4
   m_Name: TilemapWater
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -333,7 +334,7 @@ BuoyancyEffector2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 68399495}
-  m_Enabled: 1
+  m_Enabled: 0
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
@@ -345,6 +346,22 @@ BuoyancyEffector2D:
   m_FlowAngle: 0
   m_FlowMagnitude: 0
   m_FlowVariation: 0
+--- !u!19719996 &68399500
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68399495}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0.00001
 --- !u!1 &149546188
 GameObject:
   m_ObjectHideFlags: 0
@@ -563,8 +580,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22cef30f3242d874ab7fb88b7c496072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 443403999}
-  runSpeed: 1
+  t_controller: {fileID: 443403999}
+  t_runSpeed: 1
+  t_moving: 0
 --- !u!58 &443403996
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -641,12 +659,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_JumpForce: 500
+  m_SwimDownForce: 400
+  m_waterLevel: 0.5
+  m_waterDrag: 3
   m_CrouchSpeed: 0.2
   m_MovementSmoothing: 0.05
   m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 759
+    m_Bits: 743
+  m_WhatIsWater:
+    serializedVersion: 2
+    m_Bits: 16
   m_GroundCheck: {fileID: 1714004661}
   m_CeilingCheck: {fileID: 1705805521}
   m_CrouchDisableCollider: {fileID: 0}
@@ -693,8 +717,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 15758997
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b42874d581306db49b8c4c0e7b65de8a, type: 3}
   m_Color: {r: 1, g: 0.9101009, b: 0.645283, a: 1}
@@ -1014,7 +1038,7 @@ GameObject:
   - component: {fileID: 988048256}
   - component: {fileID: 988048255}
   - component: {fileID: 988048257}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TilemapGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1817,8 +1841,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 925c06897f37c4246bed4c02013fa487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 1142429283}
-  runSpeed: 1
+  f_controller: {fileID: 1142429283}
+  f_runSpeed: 1
+  f_moving: 0
 --- !u!50 &1142429282
 Rigidbody2D:
   serializedVersion: 4
@@ -1853,12 +1878,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_JumpForce: 800
+  m_SwimDownForce: 400
+  m_waterLevel: 0.5
+  m_waterDrag: 3
   m_CrouchSpeed: 0.2
   m_MovementSmoothing: 0.05
   m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 503
+    m_Bits: 487
+  m_WhatIsWater:
+    serializedVersion: 2
+    m_Bits: 16
   m_GroundCheck: {fileID: 666147555}
   m_CeilingCheck: {fileID: 1858573765}
   m_CrouchDisableCollider: {fileID: 0}
@@ -1905,8 +1936,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 15758997
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 18810f0f271a5f34fbd0727e023ad70f, type: 3}
   m_Color: {r: 0.49093705, g: 1, b: 0.35283017, a: 1}
@@ -2286,13 +2317,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0005cdae24907474699033c2ae181ca3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushButtons:
-  - {fileID: 921145033}
-  - {fileID: 1362918209}
-  - {fileID: 1750468990}
-  defaultHeight: -1.5
-  currentHeight: -1.5
-  platformSpeed: 0.1
 --- !u!1 &1705805520
 GameObject:
   m_ObjectHideFlags: 0
@@ -2512,7 +2536,7 @@ GameObject:
   - component: {fileID: 1805601548}
   - component: {fileID: 1805601547}
   - component: {fileID: 1805601549}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TilemapWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
