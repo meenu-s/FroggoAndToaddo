@@ -2337,6 +2337,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0005cdae24907474699033c2ae181ca3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pushButtons:
+  - {fileID: 1750468990}
+  - {fileID: 921145033}
+  - {fileID: 1362918209}
+  defaultHeight: -1.5
+  currentHeight: -1.5
+  platformSpeed: 0.1
 --- !u!1 &1705805520
 GameObject:
   m_ObjectHideFlags: 0
