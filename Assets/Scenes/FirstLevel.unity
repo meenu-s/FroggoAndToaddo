@@ -2341,7 +2341,7 @@ MonoBehaviour:
   - {fileID: 1750468990}
   - {fileID: 921145033}
   - {fileID: 1362918209}
-  defaultHeight: -1.5
+  defaultHeight: -1
   currentHeight: -1.5
   platformSpeed: 0.1
 --- !u!1 &1705805520
