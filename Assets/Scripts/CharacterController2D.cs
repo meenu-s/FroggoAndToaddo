@@ -103,11 +103,11 @@ public class CharacterController2D : MonoBehaviour
 			if (m_inWater)
 			{
 				// Check the character is not grounded on ground
-				if (!Physics2D.OverlapCircle(m_GroundCheck.position, k_SwimmingRadius, m_WhatIsGround))
-				{
+				// if (!Physics2D.OverlapCircle(m_GroundCheck.position, k_SwimmingRadius, m_WhatIsGround))
+				// {
 					Debug.Log("Successfully swam down in water");
 					m_Rigidbody2D.AddForce(new Vector2(0f, -m_SwimDownForce));
-				}
+				// }
 				// animation 
 			}
 		}
