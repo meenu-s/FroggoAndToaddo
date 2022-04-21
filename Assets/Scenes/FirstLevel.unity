@@ -1172,7 +1172,7 @@ MonoBehaviour:
   - {fileID: 1450272862}
   defaultYPos: -3.25
   currentYPos: -3.25
-  platformSpeed: 0.1
+  platformSpeed: 0.05
   error: 0.01
 --- !u!61 &121353541
 BoxCollider2D:
@@ -1903,7 +1903,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 443403992}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.04, y: -2.5, z: 0}
+  m_LocalPosition: {x: -6.9, y: -2.49, z: 0}
   m_LocalScale: {x: 0.12, y: 0.12, z: 1}
   m_Children:
   - {fileID: 1705805521}
@@ -6073,7 +6073,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1142429277}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.04, y: -2.5, z: 0}
+  m_LocalPosition: {x: -7.9000006, y: -2.49, z: 0}
   m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_Children:
   - {fileID: 1858573765}
@@ -6751,7 +6751,7 @@ MonoBehaviour:
   - {fileID: 1362918209}
   defaultYPos: -1.5
   currentYPos: -1.5
-  platformSpeed: 0.1
+  platformSpeed: 0.05
   error: 0.01
 --- !u!1 &1637687570
 GameObject:
