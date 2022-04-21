@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TwoButtonPush : MonoBehaviour
+public class PlatformMovement : MonoBehaviour
 {
     public PushButton[] pushButtons;
 
@@ -15,15 +15,6 @@ public class TwoButtonPush : MonoBehaviour
     void Start()
     {
         gameObject.transform.position = new Vector3(gameObject.transform.position.x, defaultHeight, 0);
-        /*GameObject[] buttonObjs  = GameObject.FindGameObjectsWithTag("button");
-        pushButtons = new PushButton[buttonObjs.Length];
-        for (int i = 0; i < buttonObjs.Length; i++)
-        {
-            pushButtons[i] = buttonObjs[i].GetComponent<PushButton>();
-        }
-        print(pushButtons.Length);*/
-
-
     }
 
     // Update is called once per frame
