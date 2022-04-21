@@ -6,7 +6,7 @@ public class PushButton : MonoBehaviour
 {
     // Start is called before the first frame update
     public bool isPressed;
-    public float goalHeight = -1.5f;
+    public float goalPosition = -1.5f;
 
     void Start()
     {
@@ -24,7 +24,6 @@ public class PushButton : MonoBehaviour
         if (collision.gameObject.tag == "froggo" || collision.gameObject.tag == "toaddo")
         {
             isPressed = true;
-            print("collided");
         }
     }   
 
