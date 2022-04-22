@@ -9,7 +9,9 @@ public class FrogMovement : MonoBehaviour
     float f_horizontalMove = 0f;
     bool f_jump = false;
     bool f_swimDown = false;
+    // bool f_climb = false;
     public bool f_moving = false;
+    float movementError = 0.0001f;
 
     // Update is called once per frame
     void Update()
@@ -19,7 +21,7 @@ public class FrogMovement : MonoBehaviour
         f_horizontalMove = f_runSpeed * Input.GetAxisRaw("HorizontalFrog");
 
         // set t_moving to true or false depending on if the toad is currently moving or not
-        if (Mathf.Abs(f_horizontalMove)>0.01f)
+        if (Mathf.Abs(f_horizontalMove)>movementError)
         {
             f_moving = true;
         } else 
@@ -33,14 +35,20 @@ public class FrogMovement : MonoBehaviour
         } if (Input.GetButtonDown("SwimDownFrog")) {
             f_swimDown = true;
             Debug.Log("down button pushes");
-        }
+        } 
+        // if (Input.GetButtonDown("ClimbFrog")) {
+        //     f_climb = true;
+        //     Debug.Log("space button pushed");
+        // }
     }
 
     void FixedUpdate() 
     {
         // Move our character
+        // f_controller.Move(f_horizontalMove, false, f_jump, f_swimDown, f_climb);
         f_controller.Move(f_horizontalMove, false, f_jump, f_swimDown);
         f_jump = false;
         f_swimDown = false;
+        // f_climb = false;
     }
 }

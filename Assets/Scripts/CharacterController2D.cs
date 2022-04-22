@@ -14,15 +14,20 @@ public class CharacterController2D : MonoBehaviour
 	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;	// How much to smooth out the movement
 	[SerializeField] private bool m_AirControl = false;							// Whether or not a player can steer while jumping;
 	[SerializeField] private LayerMask m_WhatIsGround;							// A mask determining what is ground to the character
-	[SerializeField] private LayerMask m_WhatIsWater;							// A mask determining what is ground to the character
+	[SerializeField] private LayerMask m_WhatIsWater;							// A mask determining what is water to the character
+	[SerializeField] private LayerMask m_WhatIsWall;							// A mask determining what is wall to the character
 	[SerializeField] private Transform m_GroundCheck;							// A position marking where to check if the player is grounded.
 	[SerializeField] private Transform m_CeilingCheck;							// A position marking where to check for ceilings
+	[SerializeField] private Transform m_LeftCheck;								// A position marking where to check left walls
+	[SerializeField] private Transform m_RightCheck;							// A position marking where to check right walls
 	[SerializeField] private Collider2D m_CrouchDisableCollider;				// A collider that will be disabled when crouching
 
 	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 	private bool m_Grounded;            // Whether or not the player is grounded.
 	const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
 	private bool m_inWater;
+	const float k_ClimbingRadius = 0.2f; // Radius of the overlap circle to determine if grounded
+	private bool m_onWall;
 	const float k_SwimmingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
 	private Rigidbody2D m_Rigidbody2D;
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
@@ -70,6 +75,30 @@ public class CharacterController2D : MonoBehaviour
 					OnLandEvent.Invoke();
 			}
 		}
+
+		if (m_LeftCheck!=null && m_RightCheck!=null)
+		{
+			m_onWall = false;
+			Collider2D[] leftColliders = Physics2D.OverlapCircleAll(m_LeftCheck.position, k_ClimbingRadius, m_WhatIsWall);
+			for (int i = 0; i < leftColliders.Length; i++)
+			{
+				if (leftColliders[i].gameObject != gameObject)
+				{
+					m_onWall = true;
+					print("On wall Left");
+				}
+			}
+			Collider2D[] rightColliders = Physics2D.OverlapCircleAll(m_RightCheck.position, k_ClimbingRadius, m_WhatIsWall);
+			for (int i = 0; i < rightColliders.Length; i++)
+			{
+				if (rightColliders[i].gameObject != gameObject)
+				{
+					m_onWall = true;
+					print("On wall Right");
+				}
+			}
+		}
+
 		// Count water as grounded as well
 		if (Physics2D.OverlapCircle(m_GroundCheck.position+new Vector3(0, m_waterLevel), k_SwimmingRadius, m_WhatIsWater))
 		{
@@ -88,12 +117,14 @@ public class CharacterController2D : MonoBehaviour
 			gameObject.GetComponent<Rigidbody2D>().gravityScale = 3f;	
 				gameObject.GetComponent<Rigidbody2D>().drag = 0f;
 		}
+
 	}
 
 	public bool isInWater() {
 		return m_inWater;
 	}
 
+	// public void Move(float move, bool crouch, bool jump, bool swimDown = false, bool climb = false)
 	public void Move(float move, bool crouch, bool jump, bool swimDown = false)
 	{
 		// If character is trying to swim down, check to make sure character is in water and 
@@ -171,12 +202,46 @@ public class CharacterController2D : MonoBehaviour
 				Flip();
 			}
 		}
-		// If the player should jump...
-		if ((m_Grounded || m_inWater) && jump)
+		// Should we let the Player to jump
+		if (jump)
 		{
-			// Add a vertical force to the player.
-			m_Grounded = false;
-			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+			// if (m_LeftCheck!=null && m_RightCheck!=null)
+			// {
+			// 	m_onWall = false;
+			// 	Collider2D[] leftColliders = Physics2D.OverlapCircleAll(m_LeftCheck.position, k_ClimbingRadius, m_WhatIsWall);
+			// 	Collider2D[] rightColliders = Physics2D.OverlapCircleAll(m_RightCheck.position, k_ClimbingRadius, m_WhatIsWall);
+			// 	for (int i = 0; i < leftColliders.Length; i++)
+			// 	{
+			// 		if (leftColliders[i].gameObject != gameObject || rightColliders[i].gameObject != gameObject)
+			// 		{
+			// 			m_onWall = true;
+			// 			print("On wall");
+			// 		}
+			// 	}
+			// }
+			Debug.Log("Tried to jump");
+			if (m_Grounded) 
+			{
+				Debug.Log("Jumped on ground");
+				// Yes if on ground
+				// Add jump force to the player.
+				m_Grounded = false;
+				m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+			} 
+			else if (m_inWater) 
+			{
+				Debug.Log("Jumped in water");
+				// Yes if in water
+				// Add 1/2 jump force to the player.
+				m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+			}	
+			else if (m_onWall) 
+			{
+				Debug.Log("Jumped on wall");
+				// Yes if on wall
+				// Add 1/3 jump force to the player.
+				m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce*2.0f));
+			}
 		}
 	}
 

@@ -11,6 +11,7 @@ public class ToadMovement : MonoBehaviour
     float t_horizontalMove = 0f;
     bool t_jump = false;
     public bool t_moving = false;
+    float movementError = 0.0001f;
 
     void Start()
     {
@@ -26,7 +27,7 @@ public class ToadMovement : MonoBehaviour
         t_horizontalMove = t_runSpeed * Input.GetAxisRaw("HorizontalToad");
 
         // set t_moving to true or false depending on if the toad is currently moving or not
-        if (Mathf.Abs(t_horizontalMove)>0.01f)
+        if (Mathf.Abs(t_horizontalMove)>movementError)
         {
             t_moving = true;
         } else 
