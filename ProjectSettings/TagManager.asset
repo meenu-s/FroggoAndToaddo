@@ -20,8 +20,8 @@ TagManager:
   - ToadPlayer
   - FrogPlayer
   - Wall
-  - 
-  - 
+  - Bullet
+  - DestructibleObstacles
   - 
   - 
   - 
