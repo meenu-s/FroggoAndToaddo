@@ -3788,6 +3788,7 @@ GameObject:
   - component: {fileID: 832956247}
   - component: {fileID: 832956246}
   - component: {fileID: 832956245}
+  - component: {fileID: 832956249}
   m_Layer: 0
   m_Name: lever
   m_TagString: Untagged
@@ -3926,6 +3927,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &832956249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832956243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1de04c42f1f1595458b570e614167c46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPressed: 0
+  goalPosition: -1.5
 --- !u!1 &877566056
 GameObject:
   m_ObjectHideFlags: 0
@@ -12949,15 +12964,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1758658980}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0005cdae24907474699033c2ae181ca3, type: 3}
+  m_Script: {fileID: 11500000, guid: 259498f3076119642836878fd32442fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushButtons:
-  - {fileID: 1651546599}
-  defaultYPos: -3.25
-  currentYPos: -3.25
-  platformSpeed: 0.05
-  error: 0.01
 --- !u!61 &1758658983
 BoxCollider2D:
   m_ObjectHideFlags: 0
