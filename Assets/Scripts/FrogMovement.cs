@@ -44,6 +44,12 @@ public class FrogMovement : MonoBehaviour
 
     void FixedUpdate() 
     {
+        if (f_controller.justDied()) {
+            Debug.Log("FROG DIED");
+            
+            // when Toad Falls in water and dies, restart
+            StartCoroutine(GameObject.FindObjectOfType<SceneFader>().FadeAndLoadScene(SceneFader.FadeDirection.In, "DeathScene"));
+        }
         // Move our character
         // f_controller.Move(f_horizontalMove, false, f_jump, f_swimDown, f_climb);
         f_controller.Move(f_horizontalMove, false, f_jump, f_swimDown);
