@@ -2,34 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Lever : MonoBehaviour
+public class ToggleLever : MonoBehaviour
 {
     // Start is called before the first frame update
-    public bool isPressed;
+    public bool isToggled;
+    public bool withinBounds;
     public float goalPosition = -1.5f;
 
     void Start()
     {
-        isPressed = false;
+        isToggled = false;
+        withinBounds = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-
-    }
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "froggo" || collision.gameObject.tag == "toaddo")
+        if (Input.GetKeyDown(KeyCode.T) && withinBounds)
         {
-            isPressed = true;
+            print("mouse");
+            isToggled = !isToggled;
         }
     }
 
-    void OnCollisionExit2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        isPressed = false;
+        // print($"collide {collision.gameObject.tag}");
+        withinBounds = true;
+    }
+
+        void OnTriggerExit2D(Collider2D collision)
+    {
+        // print($"collide {collision.gameObject.tag}");
+        withinBounds = false;
     }
 }
 
