@@ -16,6 +16,7 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private LayerMask m_WhatIsGround;							// A mask determining what is ground to the character
 	[SerializeField] private LayerMask m_WhatIsWater;							// A mask determining what is water to the character
 	[SerializeField] private LayerMask m_WhatIsWall;							// A mask determining what is wall to the character
+	[SerializeField] private LayerMask m_WhatIsDeathTrigger;					// A mask determining what will cause death to character
 	[SerializeField] private Transform m_GroundCheck;							// A position marking where to check if the player is grounded.
 	[SerializeField] private Transform m_CeilingCheck;							// A position marking where to check for ceilings
 	[SerializeField] private Transform m_LeftCheck;								// A position marking where to check left walls
@@ -26,6 +27,9 @@ public class CharacterController2D : MonoBehaviour
 	private bool m_Grounded;            // Whether or not the player is grounded.
 	const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
 	private bool m_inWater;
+	private bool m_touchedDeathTrigger = false;
+	private bool m_justDied = false;
+	const float k_DeathTriggerRadius = 0.2f; // Radius of the overlap circle to determine if touched death trigger
 	const float k_ClimbingRadius = 0.2f; // Radius of the overlap circle to determine if grounded
 	private bool m_onWall;
 	const float k_SwimmingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
@@ -118,10 +122,67 @@ public class CharacterController2D : MonoBehaviour
 				gameObject.GetComponent<Rigidbody2D>().drag = 0f;
 		}
 
+		// Check if you are touching an obstacle that causes death
+		// if (Physics2D.OverlapCircle(m_GroundCheck.position+new Vector3(0, m_waterLevel), k_DeathTriggerRadius, m_WhatIsDeathTrigger))
+
+		if (!m_touchedDeathTrigger) 
+		{
+			if (m_LeftCheck!=null && m_RightCheck!=null)
+			{
+				Collider2D[] leftColliders = Physics2D.OverlapCircleAll(m_LeftCheck.position, k_DeathTriggerRadius, m_WhatIsDeathTrigger);
+				for (int i = 0; i < leftColliders.Length; i++)
+				{
+					if (leftColliders[i].gameObject != gameObject)
+					{
+						m_touchedDeathTrigger = true;
+						print("Died");
+					}
+				}
+				Collider2D[] rightColliders = Physics2D.OverlapCircleAll(m_RightCheck.position, k_DeathTriggerRadius, m_WhatIsDeathTrigger);
+				for (int i = 0; i < rightColliders.Length; i++)
+				{
+					if (rightColliders[i].gameObject != gameObject)
+					{
+						m_touchedDeathTrigger = true;
+						print("Died");
+					}
+				}
+			}
+			Collider2D[] topColliders = Physics2D.OverlapCircleAll(m_CeilingCheck.position, k_DeathTriggerRadius, m_WhatIsDeathTrigger);
+			for (int i = 0; i < topColliders.Length; i++)
+			{
+				if (topColliders[i].gameObject != gameObject)
+				{
+					m_touchedDeathTrigger = true;
+					print("Died");
+				}
+			}
+			Collider2D[] bottomColliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_DeathTriggerRadius, m_WhatIsDeathTrigger);
+			for (int i = 0; i < bottomColliders.Length; i++)
+			{
+				if (bottomColliders[i].gameObject != gameObject)
+				{
+					m_touchedDeathTrigger = true;
+					print("Died");
+				}
+			}
+			if (m_touchedDeathTrigger) 
+			{
+				m_justDied = true;
+			}
+		}
 	}
 
 	public bool isInWater() {
 		return m_inWater;
+	}
+
+	public bool justDied() {
+		if (m_justDied) {
+			m_justDied = false;
+			return true;
+		}
+		return false;
 	}
 
 	// public void Move(float move, bool crouch, bool jump, bool swimDown = false, bool climb = false)

@@ -89,11 +89,18 @@ public class ToadMovement : MonoBehaviour
 
     void FixedUpdate() 
     {
-        if (t_controller.isInWater()) {
-            Debug.Log("TOAD DIED");
-        }
-        // Move our character
-        t_controller.Move(t_horizontalMove, false, t_jump);
-        t_jump = false;
+        // if (!t_controller.gameOver()) 
+        // {
+            if (t_controller.isInWater() || t_controller.justDied()) {
+                Debug.Log("TOAD DIED");
+                
+                // when Toad Falls in water and dies, restart
+                StartCoroutine(GameObject.FindObjectOfType<SceneFader>().FadeAndLoadScene(SceneFader.FadeDirection.In, "DeathScene"));
+            }
+            // Move our character
+            t_controller.Move(t_horizontalMove, false, t_jump);
+            t_jump = false;
+
+        // }
     }
 }

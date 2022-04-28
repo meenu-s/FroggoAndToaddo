@@ -6,18 +6,27 @@ using UnityEngine.SceneManagement;
 public class SwtichScreen : MonoBehaviour
 {
     public void HomeScene() {
-        SceneManager.LoadScene("HomeScene");
+        StartCoroutine(GameObject.FindObjectOfType<SceneFader>().FadeAndLoadScene(SceneFader.FadeDirection.In, "HomeScene"));
+        // SceneManager.LoadScene("HomeScene");
     }
 
     public void HowToScene() {
-        SceneManager.LoadScene("HowToScene");
+        StartCoroutine(GameObject.FindObjectOfType<SceneFader>().FadeAndLoadScene(SceneFader.FadeDirection.In, "HowToScene"));
+        // SceneManager.LoadScene("HowToScene");
+    }
+
+    public void CreditsScene() {
+        StartCoroutine(GameObject.FindObjectOfType<SceneFader>().FadeAndLoadScene(SceneFader.FadeDirection.In, "Credits"));
+        // SceneManager.LoadScene("Credits");
     }
 
     public void LevelScene() {
-        SceneManager.LoadScene("FirstLevel");
+        StartCoroutine(GameObject.FindObjectOfType<SceneFader>().FadeAndLoadScene(SceneFader.FadeDirection.In, "FirstLevel"));
+        // SceneManager.LoadScene("FirstLevel");
     }
 
     public void testScene() {
-        SceneManager.LoadScene("MovementTesting");
+        StartCoroutine(GameObject.FindObjectOfType<SceneFader>().FadeAndLoadScene(SceneFader.FadeDirection.In, "MovementTesting"));
+        // SceneManager.LoadScene("MovementTesting");
     }
 }
