@@ -22,11 +22,14 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private Transform m_LeftCheck;								// A position marking where to check left walls
 	[SerializeField] private Transform m_RightCheck;							// A position marking where to check right walls
 	[SerializeField] private Collider2D m_CrouchDisableCollider;				// A collider that will be disabled when crouching
+	[SerializeField] private AudioSource groundSFX;								// Sound effect when character falls on ground
+	[SerializeField] private AudioSource waterSFX;								// Sound effect when character swims in water
+	[SerializeField] private AudioSource jumpSFX;								// Sound effect when character jumps on ground or wall
 
 	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
-	private bool m_Grounded;            // Whether or not the player is grounded.
+	public bool m_Grounded = true;            // Whether or not the player is grounded.
 	const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
-	private bool m_inWater;
+	public bool m_inWater;
 	private bool m_touchedDeathTrigger = false;
 	private bool m_justDied = false;
 	const float k_DeathTriggerRadius = 0.2f; // Radius of the overlap circle to determine if touched death trigger
@@ -70,14 +73,19 @@ public class CharacterController2D : MonoBehaviour
 		// The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
 		// This can be done using layers instead but Sample Assets will not overwrite your project settings.
 		Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
+		Debug.Log("Checking");
 		for (int i = 0; i < colliders.Length; i++)
 		{
 			if (colliders[i].gameObject != gameObject)
 			{
 				m_Grounded = true;
-				if (!wasGrounded)
-					OnLandEvent.Invoke();
+				
 			}
+		}if (m_Grounded && !wasGrounded)
+		{
+			OnLandEvent.Invoke();
+			groundSFX.Play();
+			Debug.Log("grounded");
 		}
 
 		if (m_LeftCheck!=null && m_RightCheck!=null)
@@ -107,7 +115,10 @@ public class CharacterController2D : MonoBehaviour
 		if (Physics2D.OverlapCircle(m_GroundCheck.position+new Vector3(0, m_waterLevel), k_SwimmingRadius, m_WhatIsWater))
 		{
 			if (!wasGrounded)
-				OnLandEvent.Invoke();
+			{
+				//################ TODO : ADD LANDED SFX HERE ###################
+				groundSFX.Play();
+			}
 			if (!m_inWater) 
 			{
 				// if m was not in water and now is in water 
@@ -199,6 +210,8 @@ public class CharacterController2D : MonoBehaviour
 				// {
 					Debug.Log("Successfully swam down in water");
 					m_Rigidbody2D.AddForce(new Vector2(0f, -m_SwimDownForce));
+
+					//################ TODO : ADD SWIM SFX HERE ###################
 				// }
 				// animation 
 			}
@@ -286,8 +299,9 @@ public class CharacterController2D : MonoBehaviour
 				Debug.Log("Jumped on ground");
 				// Yes if on ground
 				// Add jump force to the player.
-				m_Grounded = false;
+				// m_Grounded = false;
 				m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+				//################ TODO : ADD JUMP SFX HERE ###################
 			} 
 			else if (m_inWater) 
 			{
@@ -295,6 +309,7 @@ public class CharacterController2D : MonoBehaviour
 				// Yes if in water
 				// Add 1/2 jump force to the player.
 				m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+				//################ TODO : ADD JUMPING IN WATER SFX HERE ###################
 			}	
 			else if (m_onWall) 
 			{
@@ -302,6 +317,7 @@ public class CharacterController2D : MonoBehaviour
 				// Yes if on wall
 				// Add 1/3 jump force to the player.
 				m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce*2.0f));
+				//################ TODO : ADD JUMPING ON WALL SFX HERE ###################
 			}
 		}
 	}
