@@ -1876,7 +1876,7 @@ GameObject:
   - component: {fileID: 117349172}
   - component: {fileID: 117349171}
   m_Layer: 0
-  m_Name: P3OrangeGate
+  m_Name: P3RedGate
   m_TagString: platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1909,7 +1909,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pushButtons:
-  - {fileID: 0}
+  - {fileID: 1462495908}
   defaultYPos: -2
   currentYPos: -2
   platformSpeed: 0.1
@@ -13470,7 +13470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPressed: 0
-  goalPosition: 2
+  goalPosition: 1
 --- !u!212 &1363843183
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14190,7 +14190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPressed: 0
-  goalPosition: 2
+  goalPosition: 0
 --- !u!212 &1462495909
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16735,7 +16735,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pushButtons:
-  - {fileID: 0}
+  - {fileID: 1363843182}
   defaultYPos: 4
   currentYPos: 4
   platformSpeed: 0.1
