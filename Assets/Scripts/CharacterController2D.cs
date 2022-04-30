@@ -116,7 +116,6 @@ public class CharacterController2D : MonoBehaviour
 		{
 			if (!wasGrounded)
 			{
-				//################ TODO : ADD LANDED SFX HERE ###################
 				groundSFX.Play();
 			}
 			if (!m_inWater) 
@@ -211,7 +210,7 @@ public class CharacterController2D : MonoBehaviour
 					Debug.Log("Successfully swam down in water");
 					m_Rigidbody2D.AddForce(new Vector2(0f, -m_SwimDownForce));
 
-					//################ TODO : ADD SWIM SFX HERE ###################
+					waterSFX.Play();
 				// }
 				// animation 
 			}
@@ -301,7 +300,7 @@ public class CharacterController2D : MonoBehaviour
 				// Add jump force to the player.
 				// m_Grounded = false;
 				m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
-				//################ TODO : ADD JUMP SFX HERE ###################
+				jumpSFX.Play();
 			} 
 			else if (m_inWater) 
 			{
@@ -309,7 +308,7 @@ public class CharacterController2D : MonoBehaviour
 				// Yes if in water
 				// Add 1/2 jump force to the player.
 				m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
-				//################ TODO : ADD JUMPING IN WATER SFX HERE ###################
+				waterSFX.Play();
 			}	
 			else if (m_onWall) 
 			{
@@ -317,7 +316,7 @@ public class CharacterController2D : MonoBehaviour
 				// Yes if on wall
 				// Add 1/3 jump force to the player.
 				m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce*2.0f));
-				//################ TODO : ADD JUMPING ON WALL SFX HERE ###################
+				jumpSFX.Play();
 			}
 		}
 	}
