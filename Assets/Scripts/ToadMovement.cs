@@ -96,6 +96,8 @@ public class ToadMovement : MonoBehaviour
                 
                 // when Toad Falls in water and dies, restart
                 StartCoroutine(GameObject.FindObjectOfType<SceneFader>().FadeAndLoadScene(SceneFader.FadeDirection.In, "DeathScene"));
+                // GameObject.FindGameObjectWithTag("Music").GetComponent<MusicManager>().StopMusic();
+                GameObject.Find("Audio Source").GetComponent<MusicManager>().StopMusic();
             }
             // Move our character
             t_controller.Move(t_horizontalMove, false, t_jump);

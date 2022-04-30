@@ -37,6 +37,17 @@ public class MusicManager : MonoBehaviour
                 Destroy(this.gameObject);
         }
     }
+
+    public void PlayMusic()
+     {
+         if (audioData.isPlaying) return;
+         audioData.Play();
+     }
+ 
+     public void StopMusic()
+     {
+         audioData.Stop();
+     }
  
     // private static void Play()
     // {
