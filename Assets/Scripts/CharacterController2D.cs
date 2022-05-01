@@ -73,7 +73,6 @@ public class CharacterController2D : MonoBehaviour
 		// The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
 		// This can be done using layers instead but Sample Assets will not overwrite your project settings.
 		Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
-		Debug.Log("Checking");
 		for (int i = 0; i < colliders.Length; i++)
 		{
 			if (colliders[i].gameObject != gameObject)
@@ -85,7 +84,6 @@ public class CharacterController2D : MonoBehaviour
 		{
 			OnLandEvent.Invoke();
 			groundSFX.Play();
-			Debug.Log("grounded");
 		}
 
 		if (m_LeftCheck!=null && m_RightCheck!=null)
@@ -97,16 +95,14 @@ public class CharacterController2D : MonoBehaviour
 				if (leftColliders[i].gameObject != gameObject)
 				{
 					m_onWall = true;
-					print("On wall Left");
 				}
 			}
 			Collider2D[] rightColliders = Physics2D.OverlapCircleAll(m_RightCheck.position, k_ClimbingRadius, m_WhatIsWall);
-			for (int i = 0; i < rightColliders.Length; i++)
+			for (int i = 0; i < rightColliders.Length; i++)	
 			{
 				if (rightColliders[i].gameObject != gameObject)
 				{
 					m_onWall = true;
-					print("On wall Right");
 				}
 			}
 		}
@@ -207,7 +203,6 @@ public class CharacterController2D : MonoBehaviour
 				// Check the character is not grounded on ground
 				// if (!Physics2D.OverlapCircle(m_GroundCheck.position, k_SwimmingRadius, m_WhatIsGround))
 				// {
-					Debug.Log("Successfully swam down in water");
 					m_Rigidbody2D.AddForce(new Vector2(0f, -m_SwimDownForce));
 
 					waterSFX.Play();
@@ -292,10 +287,8 @@ public class CharacterController2D : MonoBehaviour
 			// 		}
 			// 	}
 			// }
-			Debug.Log("Tried to jump");
 			if (m_Grounded) 
 			{
-				Debug.Log("Jumped on ground");
 				// Yes if on ground
 				// Add jump force to the player.
 				// m_Grounded = false;
@@ -304,7 +297,6 @@ public class CharacterController2D : MonoBehaviour
 			} 
 			else if (m_inWater) 
 			{
-				Debug.Log("Jumped in water");
 				// Yes if in water
 				// Add 1/2 jump force to the player.
 				m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
@@ -312,7 +304,6 @@ public class CharacterController2D : MonoBehaviour
 			}	
 			else if (m_onWall) 
 			{
-				Debug.Log("Jumped on wall");
 				// Yes if on wall
 				// Add 1/3 jump force to the player.
 				m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce*2.0f));

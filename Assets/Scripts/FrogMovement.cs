@@ -13,6 +13,15 @@ public class FrogMovement : MonoBehaviour
     public bool f_moving = false;
     float movementError = 0.0001f;
 
+    void Start()
+    {
+        //This gets the Animator, which should be attached to the GameObject you are intending to animate.
+        if (CheckpointManager.Instance.f_RespawnPoint != null ) 
+        {
+            transform.position = CheckpointManager.Instance.f_RespawnPoint;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -34,7 +43,6 @@ public class FrogMovement : MonoBehaviour
             f_jump = true;
         } if (Input.GetButtonDown("SwimDownFrog")) {
             f_swimDown = true;
-            Debug.Log("down button pushes");
         } 
         // if (Input.GetButtonDown("ClimbFrog")) {
         //     f_climb = true;
@@ -58,5 +66,9 @@ public class FrogMovement : MonoBehaviour
         f_jump = false;
         f_swimDown = false;
         // f_climb = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        CheckpointManager.Instance.EnterTrigger("Frog", other, transform.position);
     }
 }

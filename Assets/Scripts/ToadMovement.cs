@@ -17,6 +17,10 @@ public class ToadMovement : MonoBehaviour
     {
         //This gets the Animator, which should be attached to the GameObject you are intending to animate.
         m_Animator = gameObject.GetComponent<Animator>();
+        if (CheckpointManager.Instance.t_RespawnPoint != null ) 
+        {
+            transform.position = CheckpointManager.Instance.t_RespawnPoint;
+        }
     }
 
     // Update is called once per frame
@@ -67,15 +71,12 @@ public class ToadMovement : MonoBehaviour
             if (Mathf.Abs(currentSize.x)-smallScale < error) {
                 // currently in small size, resize to medium size
                 newSize = new Vector3( signOfX * mediumScale, mediumScale, 1f );
-                Debug.Log("Toad is now medium");
             } else if (Mathf.Abs(currentSize.x)-mediumScale < error) {
                 // currently in medium size, resize to large size
                 newSize = new Vector3( signOfX * largeScale, largeScale, 1f );
-                Debug.Log("Toad is now large");
             } else if (Mathf.Abs(currentSize.x)-largeScale < error) {
                 // currently in large size, resize to small size
                 newSize = new Vector3( signOfX * smallScale, smallScale, 1f );
-                Debug.Log("Toad is now small");
             } else {
                 // this size is not valid, resize to medium size
                 Debug.Log("help: the toad should not be this size of "+ currentSize.x);
@@ -84,6 +85,12 @@ public class ToadMovement : MonoBehaviour
             }
             // set new size
             transform.localScale = newSize;
+        }
+        
+        // Check if level restarted
+        if (Input.GetButtonDown("Restart"))
+        {
+            StartCoroutine(GameObject.FindObjectOfType<SceneFader>().FadeAndLoadScene(SceneFader.FadeDirection.In, "FirstLevel"));
         }
     }
 
@@ -104,5 +111,9 @@ public class ToadMovement : MonoBehaviour
             t_jump = false;
 
         // }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        CheckpointManager.Instance.EnterTrigger("Toad", other, transform.position);
     }
 }
