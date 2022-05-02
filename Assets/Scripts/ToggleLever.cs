@@ -9,10 +9,18 @@ public class ToggleLever : MonoBehaviour
     public bool withinBounds;
     public float goalPosition = -1.5f;
 
+
+    public Sprite leverToggled;
+    public Sprite leverNotToggled;
+
+    SpriteRenderer sprite;
+
     void Start()
     {
         isToggled = false;
         withinBounds = false;
+        sprite = GetComponent<SpriteRenderer>();
+
     }
 
     // Update is called once per frame
@@ -20,8 +28,17 @@ public class ToggleLever : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.T) && withinBounds)
         {
-            print("mouse");
             isToggled = !isToggled;
+            if (isToggled)
+            {
+                sprite.sprite = leverToggled;
+
+            }
+            else
+            {
+                sprite.sprite = leverNotToggled;
+            }
+
         }
     }
 
