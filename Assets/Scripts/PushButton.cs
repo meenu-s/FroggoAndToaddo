@@ -8,9 +8,15 @@ public class PushButton : MonoBehaviour
     public bool isPressed;
     public float goalPosition = -1.5f;
 
+    public Sprite buttonUnpressed;
+    public Sprite buttonPressed;
+
+    SpriteRenderer sprite;
+
     void Start()
     {
         isPressed = false;
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -24,12 +30,14 @@ public class PushButton : MonoBehaviour
         if (collision.gameObject.tag == "froggo" || collision.gameObject.tag == "toaddo")
         {
             isPressed = true;
+            sprite.sprite = buttonPressed;
         }
     }   
 
     void OnCollisionExit2D(Collision2D collision)
     {
         isPressed = false;
+        sprite.sprite = buttonUnpressed;
     }
 }
 
